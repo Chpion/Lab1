@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+<body>
+	<script>
+		function delreplay(m1, m2)
+		{
+			var del = [];
+			for (var i = 0; i < m1.length; i++)
+			{
+				if (del.includes(m1[i], 0) != true)
+				{
+					del.push(m1[i]);
+				}
+			}
+			for (var i = 0; i < m1.length; i++)
+			{
+				if (del.includes(m2[i], 0) != true)
+				{
+					del.push(m2[i]);
+				}
+			}
+			return del;
+		}
+		
+		function delnotreplay(m1, m2)
+		{
+			var del = [];
+			for (var i = 0; i < m2.length; i++)
+			{
+				if (m1.includes(m2[i], 0) == true)
+				{
+					del.push(m2[i]);
+				}
+			}
+			del = delreplay(del, 0);
+			return del;
+		}
+		
+		
+		
+		function sum(m1, m2)
+		{
+			var sum = [];
+			sum = delreplay(m1, m2);
+			return 'Объединение: ' + sum + '<br>';
+		}
+		
+		
+		function calc()
+		{
+			var res = "", m1 = [], m2 = [];
+			m1 = document.getElementById('m1').value;
+			m2 = document.getElementById('m2').value;
+			m1 = m1.split(' ');
+			m2 = m2.split(' ');
+			res = "Результат рассчета:<br>" + sum(m1, m2) + 'Пересечение:' + delnotreplay(m1, m2) + '<br>';
+			document.getElementById('sum').innerHTML = res;
+		}
+	</script>
+	<form>
+		Массив A<input type='text' id='m1' name=''><br>
+		Массив B<input type='text' id='m2' name=''><br>
+		<input type='button' value='Рассчитать' onclick="calc();"><br>
+	</form>
+	<div id='sum'></div>
+	<div id='peresech'></div>
+</body>
+
+</html>
