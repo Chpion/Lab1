@@ -5,6 +5,7 @@
 
 </head>
 <body>
+	<div id='instruction'>Введите два массива, содержащие элементы по четыре символа, по следующим правилам:<br>Первый символ - любая цифра от 0 до 9<br>Второй символ - любая буква<br>Третий символ - четная цифра<br>Четвертый символ - нечетная цифра</div>
 	<script>
 		function delreplay(m1, m2)
 		{
@@ -70,6 +71,28 @@
 			return 'Объединение: ' + sum + '<br>';
 		}
 		
+		function validate(m1)
+		{
+			var alph = /^[0-9][a-zA-Z][02468][13579]$/;
+			var result = true;
+			var length = m1.length;
+			for(var i = 0; i < length; i++){
+				if (m1[i] == ""){
+					m1.splice(i,1);
+					length = length - 1;
+					i--;
+				}
+			}
+			for(var i=0; i < length; i++){
+				if (alph.test(m1[i]) != true){
+					result = false;
+				}
+			}
+			if(result != true){
+				alert('Проверьте правильность введенных данных!');
+			}
+			return result;
+		}
 		
 		function calc()
 		{
@@ -78,6 +101,10 @@
 			m2 = document.getElementById('m2').value;
 			m1 = m1.split(' ');
 			m2 = m2.split(' ');
+			if( !validate(m1) )
+				return;
+			if( !validate(m2) )
+				return;
 			res = "Результат рассчета:<br>" + sum(m1, m2) + 'Пересечение:' + delnotreplay(m1, m2) + '<br>' + 'Дополнение(разность):' + dopoln(m1, m2) + '<br>' + 'Симметрическая разность:' + simdopoln(m1, m2);
 			document.getElementById('sum').innerHTML = res;
 		}
