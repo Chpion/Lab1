@@ -40,7 +40,19 @@
 			return del;
 		}
 		
-		
+		function dopoln(m1, m2)
+		{
+			var notrep = [], del = [];
+			notrep = delnotreplay(m1, m2);
+			for (var i = 0; i < m1.length; i++)
+			{
+				if (notrep.includes(m1[i], 0) != true)
+				{
+					del.push(m1[i]);
+				}
+			}
+			return del;
+		}
 		
 		function sum(m1, m2)
 		{
@@ -57,7 +69,7 @@
 			m2 = document.getElementById('m2').value;
 			m1 = m1.split(' ');
 			m2 = m2.split(' ');
-			res = "Результат рассчета:<br>" + sum(m1, m2) + 'Пересечение:' + delnotreplay(m1, m2) + '<br>';
+			res = "Результат рассчета:<br>" + sum(m1, m2) + 'Пересечение:' + delnotreplay(m1, m2) + '<br>' + 'Дополнение(разность):' + dopoln(m1, m2) + '<br>';
 			document.getElementById('sum').innerHTML = res;
 		}
 	</script>
@@ -68,6 +80,7 @@
 	</form>
 	<div id='sum'></div>
 	<div id='peresech'></div>
+	<div id='dopolnenie'></div>
 </body>
 
 </html>
