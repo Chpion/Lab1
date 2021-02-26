@@ -54,6 +54,15 @@
 			return del;
 		}
 		
+		function simdopoln(m1, m2)
+		{
+			var dop1 = [], dop2 = [], del = [];
+			dop1 = dopoln(m1, m2);
+			dop2 = dopoln(m2, m1);
+			del = delreplay(dop1, dop2);
+			return del;
+		}
+		
 		function sum(m1, m2)
 		{
 			var sum = [];
@@ -69,7 +78,7 @@
 			m2 = document.getElementById('m2').value;
 			m1 = m1.split(' ');
 			m2 = m2.split(' ');
-			res = "Результат рассчета:<br>" + sum(m1, m2) + 'Пересечение:' + delnotreplay(m1, m2) + '<br>' + 'Дополнение(разность):' + dopoln(m1, m2) + '<br>';
+			res = "Результат рассчета:<br>" + sum(m1, m2) + 'Пересечение:' + delnotreplay(m1, m2) + '<br>' + 'Дополнение(разность):' + dopoln(m1, m2) + '<br>' + 'Симметрическая разность:' + simdopoln(m1, m2);
 			document.getElementById('sum').innerHTML = res;
 		}
 	</script>
